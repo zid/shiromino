@@ -72,13 +72,5 @@ int timegetsec(nz_timer *t)
 
 int timegetmsec(nz_timer *t)
 {
-	int f = 0;
-	if(t->fps == 60) {
-		f = t->time % 60;
-		return ((f / 6) * 100) + ( ( ((f % 6) * 5) / 3) * 10);
-	}
-
-	int msec = (int)(( (double)(t->time) / (double)(t->fps) ) * 1000);
-
-	return msec;
+	return (1000.0 * t->time) / t->fps;
 }
